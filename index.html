@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSL 2026 Live Streaming By Inam ul Haq - Official HD</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <img src="https://via.placeholder.com/120x40/00AEEF/FFFFFF?text=PSL+2026" alt="PSL 2026">
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#live" class="nav-link active">Live Now</a></li>
+                    <li><a href="#schedule" class="nav-link">Schedule</a></li>
+                    <li><a href="#teams" class="nav-link">Teams</a></li>
+                    <li><a href="#highlights" class="nav-link">Highlights</a></li>
+                </ul>
+                <div class="header-actions">
+                    <button class="quality-btn" id="qualityBtn">
+                        <span>Auto</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="live-badge">
+                <i class="fas fa-circle live-dot"></i>
+                <span>LIVE NOW - HD 1080p</span>
+            </div>
+            <h1>PSL 2026 <br> <span class="match-title">Lahore Qalandars vs Karachi Kings</span></h1>
+            <div class="match-info">
+                <div class="score">
+                    <span class="team1">LQ <strong>148/3</strong> (19.4)</span>
+                    <span class="vs">vs</span>
+                    <span class="team2">KK <strong>142/10</strong></span>
+                </div>
+                <div class="match-status">
+                    <i class="fas fa-trophy"></i>
+                    Lahore Qalandars wins by 7 wickets!
+                </div>
+            </div>
+            <div class="hero-buttons">
+                <button class="btn-play" onclick="toggleStream()">
+                    <i class="fas fa-play"></i> 
+                    <span id="playBtnText">Watch Live Stream</span>
+                </button>
+            </div>
+            <div class="stream-info">
+                <span>🔴 LIVE | Powered by PSL Official Stream</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Player Section -->
+    <main class="main-container" id="mainContainer">
+        <section class="player-section active" id="playerSection">
+            <div class="player-wrapper">
+                <!-- Primary Live Stream from provided source -->
+                <iframe 
+                    id="mainStream" 
+                    class="live-stream" 
+                    src="https://mazari89099-coder.github.io/Dhuki-PCT/" 
+                    frameborder="0" 
+                    allowfullscreen 
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    scrolling="no"
+                    style="display: none;">
+                </iframe>
+                
+                <!-- Fallback Player -->
+                <video id="fallbackPlayer" class="video-player" controls preload="metadata" style="display: none;">
+                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                    Your browser does not support live streaming.
+                </video>
+
+                <!-- Player Controls Overlay -->
+                <div class="player-overlay" id="playerOverlay">
+                    <div class="play-circle" onclick="toggleStream()">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="overlay-info">
+                        <h3>PSL 2026 Live HD Stream</h3>
+                        <p>Click to start live streaming in 1080p</p>
+                    </div>
+                </div>
+
+                <!-- Live Indicators -->
+                <div class="live-indicators">
+                    <div class="live-status">
+                        <i class="fas fa-circle live-dot-small"></i>
+                        <span>LIVE</span>
+                    </div>
+                    <div class="stream-quality">
+                        <span id="currentQuality">1080p</span>
+                    </div>
+                </div>
+
+                <!-- Commentary Ticker -->
+                <div class="commentary-ticker">
+                    <div class="ticker-content">
+                        <span class="ball">19.4</span> 
+                        <span>Fakhar Zaman smashes a massive SIX! LQ wins by 7 wickets! What a finish! 🏆</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scorecard Sidebar -->
+        <aside class="sidebar active" id="sidebar">
+            <div class="score-panel">
+                <div class="match-header">
+                    <h3>Lahore Qalandars <span class="winner-badge">WIN</span></h3>
+                    <div class="score-summary">148/3 (19.4 ovs) beat Karachi Kings 142 (19.2 ovs) by 7 wkts</div>
+                </div>
+
+                <div class="batting-section">
+                    <h4>🏏 Batting - Lahore Qalandars</h4>
+                    <div class="batsmen-list">
+                        <div class="batsman-row not-out">
+                            <span>Fakhar Zaman</span>
+                            <span>65* (29)</span>
+                            <span class="rate">224.14</span>
+                        </div>
+                        <div class="batsman-row not-out">
+                            <span>Sikandar Raza</span>
+                            <span>48* (23)</span>
+                            <span class="rate">208.70</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bowling-section">
+                    <h4>🏐 Bowling - Karachi Kings</h4>
+                    <div class="bowlers-list">
+                        <div class="bowler-row">
+                            <span>Hasan Ali</span>
+                            <span>3-0-32-1</span>
+                            <span class="econ">10.67</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="partnership">
+                    <span>7th Wicket: 92 runs in 50 balls (Fakhar 52*, Raza 38*)</span>
+                </div>
+            </div>
+
+            <div class="quick-stats">
+                <h4>📊 Quick Stats</h4>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span>MoM</span>
+                        <span>Fakhar Zaman</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>RR</span>
+                        <span>7.57</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Schedule Section -->
+    <section id="schedule" class="schedule-section">
+        <div class="container">
+            <h2>📅 Next Matches</h2>
+            <div class="matches-grid">
+                <div class="match-card upcoming">
+                    <div class="match-date">26 Feb, 8:00 PM PKT</div>
+                    <div class="teams-row">
+                        <span class="team-name">Multan Sultans</span>
+                        <span class="vs">VS</span>
+                        <span class="team-name">Peshawar Zalmi</span>
+                    </div>
+                    <div class="venue">Gaddafi Stadium, Lahore</div>
+                </div>
+                <!-- More matches can be added -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>PSL 2026 Official</h3>
+                    <p>Live Streaming in HD | Pakistan Super League Season 6</p>
+                </div>
+                <div class="social-links">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Pakistan Super League. All rights reserved. | Stream Partner: PSL TV</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: linear-gradient(135deg, #00AEEF 0%, #00D4FF 100%);
+    --secondary: linear-gradient(135deg, #FF6B35 0%, #FF8E53 100%);
+    --dark-bg: #0a0a15;
+    --card-bg: rgba(20, 20, 40, 0.8);
+    --glass: rgba(255, 255, 255, 0.05);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--dark-bg);
+    color: white;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(10, 10, 20, 0.98);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar {
+    padding: 1rem 0;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.logo img { height: 45px; }
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #00AEEF;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.quality-btn {
+    background: var(--glass);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.quality-btn:hover {
+    border-color: #00AEEF;
+    box-shadow: 0 0 20px rgba(0, 174, 239, 0.3);
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 2rem 2rem;
+    position: relative;
+    background: radial-gradient(ellipse at center, rgba(0, 174, 239, 0.1) 0%, transparent 70%);
+}
+
+.live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: linear-gradient(135deg, #FF4757, #FF6B7A);
+    padding: 0.75rem 1.75rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(255, 71, 87, 0.4);
+    animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 10px 30px rgba(255, 71, 87, 0.4); }
+    50% { box-shadow: 0 10px 40px rgba(255, 71, 87, 0.6); }
+}
+
+.live-dot {
+    width: 12px;
+    height: 12px;
+    background: #FF4757;
+    border-radius: 50%;
+    animation: blink 1s infinite;
+}
+
+.live-dot-small {
+    width: 8px;
+    height: 8px;
+    animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    background: var(--primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+}
+
+.match-title {
+    font-weight: 400;
+    font-size: 0.65em;
+    color: #ccc;
+}
+
+.match-info {
+    margin: 3rem 0;
+}
+
+.score {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.team1 strong {
+    color: #00AEEF;
+    font-size: 2.5rem;
+    display: block;
+}
+
+.team2 strong {
+    color: #FF6B35;
+    font-size: 2.5rem;
+    display: block;
+}
+
+.team1, .team2 {
+    text-align: center;
+}
+
+.vs {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #aaa;
+    min-width: 40px;
+}
+
+.match-status {
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 0 auto;
+    max-width: 400px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.btn-play {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 1.25rem 3rem;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 15px 35px rgba(0, 174, 239, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-play:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(0, 174, 239, 0.6);
+}
+
+.stream-info {
+    opacity: 0.8;
+    font-size: 0.95rem;
+}
+
+/* Main Container */
+.main-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 2rem;
+    min-height: 80vh;
+}
+
+/* Player Section */
+.player-section {
+    background: #000;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+    position: relative;
+    height: 600px;
+}
+
+.player-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.live-stream, .video-player {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 25px;
+}
+
+.player-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.play-circle {
+    width: 120px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
